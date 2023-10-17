@@ -31,94 +31,96 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[900],
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: const Icon(Icons.menu),
-        actions: const [Padding(
-          padding: EdgeInsets.only(right: 20.0),
-          child: Icon(Icons.person),
-        )],
-      ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.grey[900],
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          leading: const Icon(Icons.menu),
+          actions: const [Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: Icon(Icons.person),
+          )],
+        ),
 
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
-        ],
-      ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.favorite), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
+          ],
+        ),
 
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text('Find the best coffee for you',
-              style: GoogleFonts.bebasNeue(
-                  fontSize: 54
-              ),
-            ),
-          ),
-
-          const SizedBox(height: 15,),
-
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: TextField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search),
-                hintText: 'Find your coffee....',
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade600),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade600),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text('Find the best coffee for you',
+                style: GoogleFonts.bebasNeue(
+                    fontSize: 54
                 ),
               ),
             ),
-          ),
 
-          const SizedBox(height: 15,),
+            const SizedBox(height: 15,),
 
-          Container(
-            height: 50,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: coffeeType.length,
-                itemBuilder: (context, index){
-                  return CoffeeType(
-                      coffeetype: coffeeType[index][0],
-                      isSelected: coffeeType[index][1],
-                      onTap: (){
-                        coffeeTypeSelected(index);
-                      });
-                }),
-          ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  hintText: 'Find your coffee....',
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey.shade600),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey.shade600),
+                  ),
+                ),
+              ),
+            ),
 
-          Expanded(
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  CoffeeTiles(
-                    coffeImagePath: 'lib/imagess/images.jpeg',
-                    coffeeName: 'Cappucino',
-                    coffeePrice: '4.00',
-                  ),
-                  CoffeeTiles(
-                    coffeImagePath: 'lib/imagess/latte.jpeg',
-                    coffeeName: 'Latte',
-                    coffeePrice: '4.00',
-                  ),
-                  CoffeeTiles(
-                    coffeImagePath: 'lib/imagess/milk.jpeg',
-                    coffeeName: 'Milk',
-                    coffeePrice: '4.00',
-                  ),
-                ],
-              ))
-        ],
+            const SizedBox(height: 15,),
+
+            Container(
+              height: 50,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: coffeeType.length,
+                  itemBuilder: (context, index){
+                    return CoffeeType(
+                        coffeetype: coffeeType[index][0],
+                        isSelected: coffeeType[index][1],
+                        onTap: (){
+                          coffeeTypeSelected(index);
+                        });
+                  }),
+            ),
+
+            Expanded(
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    CoffeeTiles(
+                      coffeImagePath: 'lib/imagess/images.jpeg',
+                      coffeeName: 'Cappucino',
+                      coffeePrice: '4.00',
+                    ),
+                    CoffeeTiles(
+                      coffeImagePath: 'lib/imagess/latte.jpeg',
+                      coffeeName: 'Latte',
+                      coffeePrice: '4.00',
+                    ),
+                    CoffeeTiles(
+                      coffeImagePath: 'lib/imagess/milk.jpeg',
+                      coffeeName: 'Milk',
+                      coffeePrice: '4.00',
+                    ),
+                  ],
+                ))
+          ],
+        ),
       ),
     );
   }
